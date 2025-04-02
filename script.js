@@ -1,5 +1,5 @@
-let WIDTH = 400;
-let HEIGHT = 300;
+let WIDTH = 800;
+let HEIGHT = 600;
 
 const config = {
     type: Phaser.AUTO,
@@ -16,7 +16,7 @@ const game = new Phaser.Game(config);
 
 let ball;
 let ballSize = 80;
-let yspeed = 0.5;
+let yspeed = 1.0;
 let xspeed = 1.0;
 
 function preload() {
