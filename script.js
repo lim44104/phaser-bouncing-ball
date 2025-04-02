@@ -18,6 +18,8 @@ let ball;
 let ballSize = 80;
 let yspeed = 1.5;
 let xspeed = 1.0;
+let lives = 10; // Initialize lives variable
+let livesText; // Text object to display lives
 
 function preload() {
     this.load.image("ball", "assets/ball.png"); // watch out for case sensitivity
@@ -26,6 +28,26 @@ function preload() {
 function create() {
     ball = this.add.sprite(WIDTH / 2, HEIGHT / 2, "ball"); // x, y, and the ball "key"
     ball.setDisplaySize(ballSize, ballSize); // width, height
+
+    // Make the ball interactive
+    ball.setInteractive();
+
+    // Add a click event listener
+    ball.on('pointerdown', () => {
+        // Reduce the ball size by 10%
+        ballSize *= 0.9;
+        ball.setDisplaySize(ballSize, ballSize);
+
+        // Increase the speed by 10%
+        xspeed *= 1.1;
+        yspeed *= 1.1;
+    });
+
+    // Display lives on the top left of the screen
+    livesText = this.add.text(10, 10, `Lives: ${lives}`, {
+        font: "20px Arial",
+        fill: "#ffffff"
+    });
 }
 
 function update() {
