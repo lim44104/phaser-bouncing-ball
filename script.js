@@ -16,7 +16,7 @@ const game = new Phaser.Game(config);
 
 let ball;
 let ballSize = 80;
-let yspeed = 0.5;
+let yspeed = 1.5;
 let xspeed = 1.0;
 
 function preload() {
