@@ -41,6 +41,10 @@ function create() {
         // Increase the speed by 10%
         xspeed *= 1.1;
         yspeed *= 1.1;
+
+        // Increase lives by 1 and update the text
+        lives += 1;
+        livesText.setText(`Lives: ${lives}`);
     });
 
     // Display lives on the top left of the screen
@@ -58,9 +62,33 @@ function update() {
     if (ball.y >= HEIGHT - ballSize / 2 || ball.y <= ballSize / 2) {
         // Multiplying by -1 will "flip" the direction
         yspeed *= -1;
+
+        // Reduce lives by 1 and update the text
+        lives -= 1;
+        livesText.setText(`Lives: ${lives}`);
     }
 
     if (ball.x >= WIDTH - ballSize / 2 || ball.x <= ballSize / 2) {
         xspeed *= -1;
+
+        // Reduce lives by 1 and update the text
+        lives -= 1;
+        livesText.setText(`Lives: ${lives}`);
+    }
+
+    // Check if lives reach 0
+    if (lives <= 0) {
+        // Stop the ball's movement
+        xspeed = 0;
+        yspeed = 0;
+
+        // Display "Game Over" text
+        this.add.text(WIDTH / 2 - 100, HEIGHT / 2, "Game Over", {
+            font: "40px Arial",
+            fill: "#ff0000"
+        }).setOrigin(0.5, 0.5);
+
+        // Pause the game scene
+        this.scene.pause();
     }
 }
